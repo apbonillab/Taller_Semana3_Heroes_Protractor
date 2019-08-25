@@ -49,6 +49,13 @@ export class TourOfHeroesPage {
    browser.sleep(1000);
   }
   
+  navigateHeroesDashList(){
+    browser.get('/heroes');
+    let allHeroes = element(by.tagName('my-heroes')).all(by.tagName('li'));
+    allHeroes.get(0).click();
+   browser.sleep(1000);
+  }
+  
 
   enterNewHeroInInput(newHero: string) {
     element(by.tagName('input')).sendKeys(newHero);
