@@ -28,9 +28,18 @@ export class TourOfHeroesPage {
     return result;
   }
 
-    deleteHeroes(){
+  deleteHeroes(){
     let allHeroes = element(by.tagName('my-heroes')).all(by.tagName('li'));
    allHeroes.get(0).all(by.buttonText('x')).click();
+  }
+  
+  heroesEdit(nameEdit: string){
+    let allHeroes = element(by.tagName('my-heroes')).all(by.tagName('li'));
+    allHeroes.get(0).click();
+    element(by.tagName('input')).clear();
+    element(by.tagName('input')).sendKeys( nameEdit);
+    element(by.buttonText('save')).click();
+    browser.sleep(1000);
   }
 
   enterNewHeroInInput(newHero: string) {

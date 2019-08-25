@@ -107,5 +107,12 @@ describe('Tour of heroes, Taller individual', () => {
      expect(currentHeroes.then(n => n-1)).toBe(page.getAllHeroes().count());
   })
 
+  
+  it('3. deberia editar un heroe', () => {    
+    page.heroesEdit('edit Heroes');
+    const currentHeroes = page.getAllHeroes();
+    let name = currentHeroes.get(0).element(by.tagName('a'));
+    expect(name.getText()).toContain('edit Heroes');
+  });
 
 });
