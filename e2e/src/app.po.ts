@@ -56,6 +56,15 @@ export class TourOfHeroesPage {
    browser.sleep(1000);
   }
   
+  navigateHeroeBySearch(){
+    browser.get('');
+    let input= element(by.css('#search-box'));
+    input.sendKeys('Bombasto');
+    browser.sleep(1000);
+    let result =  element.all(by.css('.search-result li'));
+    result.click();
+    browser.sleep(1000);
+  }
 
   enterNewHeroInInput(newHero: string) {
     element(by.tagName('input')).sendKeys(newHero);
