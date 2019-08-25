@@ -45,9 +45,33 @@ describe('Tour of heroes Dashboard', () => {
   });
 });
 
+function getPageElts() {
+  let navElts = element.all(by.css('app-root nav a'));
+
+  return {
+    navElts: navElts,
+
+    appDashboardHref: navElts.get(0),
+    appDashboard: element(by.css('app-root app-dashboard')),
+    topHeroes: element.all(by.css('app-root app-dashboard > div h4')),
+
+    appHeroesHref: navElts.get(1),
+    appHeroes: element(by.css('app-root app-heroes')),
+    allHeroes: element.all(by.css('app-root app-heroes li')),
+    selectedHeroSubview: element(by.css('app-root app-heroes > div:last-child')),
+
+    heroDetail: element(by.css('app-root app-hero-detail > div')),
+
+    searchBox: element(by.css('#search-box')),
+    searchResults: element.all(by.css('.search-result li'))
+  };
+}
+
 describe('Tour of heroes, heroes page', () => {
   let page: TourOfHeroesPage;
 
+  
+  
   beforeEach(() => {
     page = new TourOfHeroesPage();
     page.navigateToHeroes();
@@ -58,5 +82,30 @@ describe('Tour of heroes, heroes page', () => {
     page.enterNewHeroInInput('My new Hero');
     expect(page.getAllHeroes().count()).toBe(currentHeroes.then(n => n + 1));
   });
+
+
+});
+
+describe('Tour of heroes, Taller individual', () => {
+  let page: TourOfHeroesPage;
+
+  
+  
+  beforeEach(() => {
+    page = new TourOfHeroesPage();
+    page.navigateToHeroes();
+  });
+
+  it('1. deberia buscar un heroe', () => {
+    const findHeroes = page.searchHeroes();
+    expect(findHeroes).toBe(1);
+  });
+
+  it('2. deberia eliminar un heroe',() => {
+     const currentHeroes   = page.getAllHeroes().count();
+     page.deleteHeroes();
+     expect(currentHeroes.then(n => n-1)).toBe(page.getAllHeroes().count());
+  })
+
 
 });
