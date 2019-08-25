@@ -42,6 +42,14 @@ export class TourOfHeroesPage {
     browser.sleep(1000);
   }
 
+  navigateHeroesDash(){
+    browser.get('');
+    let allHeroes = element(by.css('app-root app-dashboard')).all(by.tagName('a'));
+   allHeroes.get(0).click();
+   browser.sleep(1000);
+  }
+  
+
   enterNewHeroInInput(newHero: string) {
     element(by.tagName('input')).sendKeys(newHero);
     element(by.buttonText('Add')).click();

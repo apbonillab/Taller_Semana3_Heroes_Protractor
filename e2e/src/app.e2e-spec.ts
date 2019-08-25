@@ -115,4 +115,9 @@ describe('Tour of heroes, Taller individual', () => {
     expect(name.getText()).toContain('edit Heroes');
   });
 
+  it('4. deberia navegar un heroe', () => {    
+    page.navigateHeroesDash();
+    expect(element(by.tagName('app-hero-detail')).isPresent())
+  });
+
 });
